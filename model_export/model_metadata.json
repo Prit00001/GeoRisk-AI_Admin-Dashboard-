@@ -1,0 +1,200 @@
+{
+  "model_info": {
+    "name": "Manipur Flood Prediction Model",
+    "version": "1.0.0",
+    "type": "Gradient Boosting",
+    "created_date": "2026-01-27 15:33:44"
+  },
+  "features": {
+    "total_features": 17,
+    "feature_list": [
+      "rainfall_3days",
+      "temperature",
+      "humidity",
+      "wind_speed",
+      "elevation",
+      "distance_to_river",
+      "slope",
+      "river_water_level",
+      "soil_moisture",
+      "drainage_capacity",
+      "dam_release",
+      "previous_floods",
+      "season",
+      "deforestation_index",
+      "encroachment_level",
+      "district_encoded",
+      "district_type_encoded"
+    ]
+  },
+  "districts_info": {
+    "Imphal West": {
+      "type": "valley",
+      "avg_elevation": 790,
+      "major_rivers": [
+        "Imphal",
+        "Nambul",
+        "Kongba"
+      ],
+      "flood_prone_score": 0.85,
+      "area_km2": 519,
+      "urban_density": 0.9
+    },
+    "Imphal East": {
+      "type": "valley",
+      "avg_elevation": 790,
+      "major_rivers": [
+        "Imphal",
+        "Iril"
+      ],
+      "flood_prone_score": 0.9,
+      "area_km2": 709,
+      "urban_density": 0.85
+    },
+    "Bishnupur": {
+      "type": "valley",
+      "avg_elevation": 790,
+      "major_rivers": [
+        "Imphal",
+        "Loktak"
+      ],
+      "flood_prone_score": 0.8,
+      "area_km2": 496,
+      "urban_density": 0.7
+    },
+    "Thoubal": {
+      "type": "valley",
+      "avg_elevation": 790,
+      "major_rivers": [
+        "Thoubal",
+        "Iril",
+        "Wangjing"
+      ],
+      "flood_prone_score": 0.95,
+      "area_km2": 514,
+      "urban_density": 0.75
+    },
+    "Kakching": {
+      "type": "valley",
+      "avg_elevation": 790,
+      "major_rivers": [
+        "Thoubal"
+      ],
+      "flood_prone_score": 0.88,
+      "area_km2": 332,
+      "urban_density": 0.65
+    },
+    "Jiribam": {
+      "type": "valley",
+      "avg_elevation": 800,
+      "major_rivers": [
+        "Barak",
+        "Jiri"
+      ],
+      "flood_prone_score": 0.75,
+      "area_km2": 232,
+      "urban_density": 0.5
+    },
+    "Senapati": {
+      "type": "hill",
+      "avg_elevation": 1650,
+      "major_rivers": [
+        "Imphal",
+        "Iril"
+      ],
+      "flood_prone_score": 0.6,
+      "area_km2": 3271,
+      "urban_density": 0.2
+    },
+    "Kangpokpi": {
+      "type": "hill",
+      "avg_elevation": 1600,
+      "major_rivers": [
+        "Imphal"
+      ],
+      "flood_prone_score": 0.55,
+      "area_km2": 1000,
+      "urban_density": 0.25
+    },
+    "Tamenglong": {
+      "type": "hill",
+      "avg_elevation": 1700,
+      "major_rivers": [
+        "Barak"
+      ],
+      "flood_prone_score": 0.5,
+      "area_km2": 4391,
+      "urban_density": 0.15
+    },
+    "Noney": {
+      "type": "hill",
+      "avg_elevation": 1650,
+      "major_rivers": [
+        "Barak"
+      ],
+      "flood_prone_score": 0.65,
+      "area_km2": 1500,
+      "urban_density": 0.2
+    },
+    "Ukhrul": {
+      "type": "hill",
+      "avg_elevation": 1700,
+      "major_rivers": [
+        "Imphal"
+      ],
+      "flood_prone_score": 0.5,
+      "area_km2": 4544,
+      "urban_density": 0.18
+    },
+    "Kamjong": {
+      "type": "hill",
+      "avg_elevation": 1750,
+      "major_rivers": [
+        "Imphal"
+      ],
+      "flood_prone_score": 0.45,
+      "area_km2": 1000,
+      "urban_density": 0.15
+    },
+    "Churachandpur": {
+      "type": "hill",
+      "avg_elevation": 1600,
+      "major_rivers": [
+        "Manipur"
+      ],
+      "flood_prone_score": 0.55,
+      "area_km2": 4570,
+      "urban_density": 0.22
+    },
+    "Pherzawl": {
+      "type": "hill",
+      "avg_elevation": 1650,
+      "major_rivers": [
+        "Manipur"
+      ],
+      "flood_prone_score": 0.52,
+      "area_km2": 1200,
+      "urban_density": 0.18
+    },
+    "Chandel": {
+      "type": "hill",
+      "avg_elevation": 1680,
+      "major_rivers": [
+        "Manipur"
+      ],
+      "flood_prone_score": 0.58,
+      "area_km2": 3317,
+      "urban_density": 0.2
+    },
+    "Tengnoupal": {
+      "type": "hill",
+      "avg_elevation": 1700,
+      "major_rivers": [
+        "Manipur"
+      ],
+      "flood_prone_score": 0.48,
+      "area_km2": 1100,
+      "urban_density": 0.17
+    }
+  }
+}

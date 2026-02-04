@@ -1,0 +1,41 @@
+{
+  "export_date": "2026-01-27T14:39:31.365990",
+  "model_version": "1.0.0",
+  "framework": "scikit-learn + xgboost",
+  "n_features": 17,
+  "feature_names": [
+    "Rainfall_mm",
+    "Slope_Angle",
+    "Soil_Saturation",
+    "Vegetation_Cover",
+    "Earthquake_Activity",
+    "Proximity_to_Water",
+    "Soil_Type_Gravel",
+    "Soil_Type_Sand",
+    "Soil_Type_Silt",
+    "rainfall_slope_interaction",
+    "saturation_slope_risk",
+    "rainfall_saturation",
+    "hydrological_risk",
+    "geological_risk",
+    "rainfall_squared",
+    "slope_squared",
+    "stability_index"
+  ],
+  "optimal_threshold": 0.6398491708437601,
+  "models_included": [
+    "random_forest",
+    "xgboost",
+    "neural_network",
+    "gradient_boosting"
+  ],
+  "prediction_horizon": "3 days",
+  "target_region": "Manipur, India",
+  "risk_levels": {
+    "EXTREME": "\u2265 80% probability",
+    "HIGH": "60-80% probability",
+    "MODERATE": "40-60% probability",
+    "LOW": "20-40% probability",
+    "MINIMAL": "< 20% probability"
+  }
+}
