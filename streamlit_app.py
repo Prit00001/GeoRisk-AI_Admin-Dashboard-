@@ -53,9 +53,17 @@ html, body, [class*="css"]  {
 # ============================================================
 
 st.markdown("""
-# 🌍 Disaster Risk Intelligence Dashboard
-### AI-Powered District Monitoring • Manipur
+# 🛡️ Disaster Risk Intelligence System
+### Government Environmental Monitoring • Admin Control Panel
 """)
+
+col1, col2, col3 = st.columns(3)
+
+col1.metric("🛰 Active Sensors", "128", "+4 Today")
+col2.metric("🌦 Live Weather Feeds", "32 Districts")
+col3.metric("⚠ Active Alerts", "3 Critical")
+
+st.markdown("---")
 
 st.markdown("""
 <div style="padding:12px; border-radius:10px; background-color:#1c2433; 
