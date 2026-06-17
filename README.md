@@ -185,7 +185,7 @@ Built at the **IIM Shillong North-East Hackathon** by students of **IIIT Manipur
 | Name | Role |
 |---|---|
 | Pratyush Pandey | Data pipeline, Admin Dashboard, Visualisation |
-| Kumar Gaurav |  |
+| Kumar Gaurav | Backend Integration & Model Deployment |
 | Rishabh Pandey | ML Engineer |
 
 ---
