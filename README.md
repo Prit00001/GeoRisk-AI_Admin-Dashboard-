@@ -1,201 +1,199 @@
-# 🌍 Disaster Risk Monitoring Dashboard
+# 🌍 GeoRisk AI — Disaster Risk Monitoring Dashboard
 
-A comprehensive Streamlit dashboard for monitoring **Landslide** and **Flood** risks across Manipur districts using machine learning models.
+> **AI-powered flood and landslide risk prediction for all 16 districts of Manipur, India.**  
+> Built during the **IIM Shillong North-East Hackathon** by Team GeoRisk AI, IIIT Manipur.
 
-## 📋 Features
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.x-red.svg)](https://streamlit.io)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.3+-orange.svg)](https://scikit-learn.org)
+[![Live App](https://img.shields.io/badge/Live%20App-georisk1ai.streamlit.app-green)](https://georisk1ai.streamlit.app)
 
-### 🏔️ Landslide Risk Assessment
-- Grid-based analysis across district boundaries
-- Multiple risk levels (High, Medium, Low, Minimal)
-- Interactive map visualization
-- Environmental factor analysis (elevation, slope, rainfall)
-- Downloadable CSV reports
+---
 
-### 🌊 Flood Risk Assessment
-- 3-day advance flood prediction
-- All 16 Manipur districts covered
-- Real-time weather parameter input
-- Risk gauge visualization
-- District-specific information (rivers, elevation, flood-prone scores)
+## 🎯 What This Does
 
-## 🚀 Quick Start
+Manipur faces recurring natural disasters — valley districts flood every monsoon, hill districts face landslides year-round. Yet no accessible, district-level risk tool existed for first responders or administrators.
+
+**GeoRisk AI solves this.** It takes real-world environmental parameters as input and outputs an actionable risk score with 3-day advance warning — no data science background required to use it.
+
+---
+
+## ✨ Key Features
+
+### 🌊 Flood Risk Prediction
+- **3-day advance flood prediction** for all 16 Manipur districts
+- Powered by a **Gradient Boosting Classifier** trained on 17 environmental features
+- Smart seasonal defaults — auto-detects monsoon vs winter and adjusts baselines
+- Outputs flood probability (0–100%), risk level (Critical / High / Moderate / Low), and actionable warnings
+- Downloadable PDF/CSV risk reports
+
+### 🏔️ Landslide Risk Mapping
+- **Grid-based spatial analysis** across district boundaries
+- Predicts risk zones (High / Medium / Low / Minimal) at coordinate level
+- Uses elevation, slope gradient, and rainfall as core features
+- Interactive color-coded map visualization
+- Downloadable CSV with zone-level breakdown
+
+---
+
+## 🧠 Model Details
+
+### Flood Prediction Model
+| Property | Details |
+|---|---|
+| Algorithm | Gradient Boosting Classifier |
+| Features | 17 (meteorological + physical + infrastructural) |
+| Output | Flood probability % + risk level |
+| Prediction window | 3 days in advance |
+| Districts covered | All 16 Manipur districts |
+| Serialization | joblib |
+
+**Input Features:**
+| Category | Features |
+|---|---|
+| Meteorological | 3-day cumulative rainfall, temperature, humidity, wind speed, season |
+| Physical | River water level, soil moisture, terrain elevation |
+| Infrastructural | Drainage capacity, dam release status |
+
+**Why these features?**
+- River water level indicates upstream discharge buildup — the most direct flood precursor
+- Soil moisture reveals whether ground can absorb more rainfall or will cause runoff
+- 3-day cumulative rainfall (not single-day) captures how flood risk builds over time
+- Dam release status accounts for flash flood risk independent of rainfall
+
+### Landslide Prediction Model
+| Property | Details |
+|---|---|
+| Algorithm | Random Forest |
+| Features | Elevation, slope gradient, rainfall intensity |
+| Output | Risk level per grid point + probability |
+| Spatial resolution | 4–6 grid points per district |
+
+---
+
+## 📊 Data Sources
+
+| Source | Data Type | Used For |
+|---|---|---|
+| NDMA (National Disaster Management Authority) | Historical disaster event records, district vulnerability indices | Model training, risk baseline |
+| NDMI (National Disaster Management Institute) | Risk assessment frameworks, regional risk scores | Feature engineering |
+| CWC (Central Water Commission) | River water level readings | Flood feature |
+| IMD / Weather APIs | Rainfall, temperature, humidity, wind speed | Meteorological features |
+| SRTM / Terrain APIs | Elevation and slope data | Landslide features |
+
+---
+
+## 🗺️ Supported Districts
+
+**Valley Districts (Flood-prone):**
+Imphal West · Imphal East · Bishnupur · Thoubal · Kakching · Jiribam
+
+**Hill Districts (Landslide-prone):**
+Senapati · Kangpokpi · Tamenglong · Noney · Ukhrul · Kamjong · Churachandpur · Pherzawl · Chandel · Tengnoupal
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 ```bash
-pip install streamlit pandas numpy plotly scikit-learn joblib
+pip install streamlit pandas numpy plotly scikit-learn==1.3.0 joblib
 ```
 
 ### File Structure
 ```
-project/
-├── streamlit_app.py          # Main dashboard application
-├── flood.py                   # Flood prediction module
-├── landslide_core.py          # Your landslide prediction module (to be added)
-└── model_export/              # Flood model files
+GeoRisk-AI/
+├── streamlit_app.py          # Main dashboard
+├── flood.py                  # Flood prediction module
+├── landslide_core.py         # Landslide prediction module
+├── requirements.txt
+├── runtime.txt
+└── model_export/
     ├── manipur_flood_model.joblib
     ├── manipur_encoders.joblib
     ├── manipur_predictor.py
     └── model_metadata.json
 ```
 
-### Running the Dashboard
-
-1. **Place all files in the same directory**
-
-2. **Run the Streamlit app:**
+### Run Locally
 ```bash
+git clone https://github.com/Prit00001/GeoRisk-AI_Admin-Dashboard-
+cd GeoRisk-AI_Admin-Dashboard-
+pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
-
-3. **Open your browser** to `http://localhost:8501`
-
-## 📖 Usage Guide
-
-### Landslide Risk Assessment
-
-1. Click the **"🏔️ Landslide Risk Assessment"** button
-2. Select a district from the dropdown
-3. Click **"Generate Landslide Risk Map"**
-4. View:
-   - Risk metrics (High/Medium/Low zones)
-   - Interactive map with color-coded risk levels
-   - Detailed data grid
-   - Download CSV report
-
-### Flood Risk Assessment
-
-1. Click the **"🌊 Flood Risk Assessment"** button
-2. Select a district from the dropdown
-3. (Optional) Expand "Advanced Parameters" to customize:
-   - Rainfall (3-day cumulative)
-   - Temperature, Humidity, Wind Speed
-   - River water level
-   - Soil moisture, Drainage capacity
-   - Dam release status, Season
-4. Click **"Generate Flood Risk Assessment"**
-5. View:
-   - Flood probability percentage
-   - Risk level (Critical/High/Moderate/Low)
-   - Warnings and alerts
-   - District information
-   - Risk gauge chart
-   - Download report
-
-## 🔧 Integrating Your Landslide Model
-
-The current code has a **PLACEHOLDER** for landslide predictions. Replace this section in `streamlit_app.py`:
-
-```python
-# CURRENT (Line ~183):
-# DUMMY DATA for demonstration (remove this and use your actual function)
-result = {
-    "risk_level": np.random.choice([...]),
-    "landslide_probability": np.random.uniform(0.1, 0.9)
-}
-```
-
-**REPLACE WITH:**
-```python
-# Import your module at the top
-from landslide_core import predict_with_free_apis
-
-# Then use it:
-result, env = predict_with_free_apis(lat, lon)
-```
-
-Make sure your `predict_with_free_apis()` function returns:
-- `result`: dict with keys `risk_level` and `landslide_probability`
-- `env`: dict with keys `elevation`, `slope`, `rainfall`
-
-## 🐛 Troubleshooting
-
-### Issue 1: "Scikit-learn version mismatch"
-
-**Error:**
-```
-AttributeError: Can't get attribute '__pyx_unpickle_CyHalfBinomialLoss'
-```
-
-**Solution:**
-The flood model was trained with scikit-learn 1.x. Upgrade your version:
-```bash
-pip install --upgrade scikit-learn
-# or
-pip install scikit-learn==1.3.0
-```
-
-### Issue 2: "Module 'landslide_core' not found"
-
-**Solution:**
-1. Create your `landslide_core.py` file with the `predict_with_free_apis()` function
-2. Place it in the same directory as `streamlit_app.py`
-3. Make sure it's properly imported
-
-### Issue 3: "Flood model files not found"
-
-**Solution:**
-1. Ensure the `model_export/` folder is in the same directory
-2. Check that these files exist:
-   - `manipur_flood_model.joblib`
-   - `manipur_encoders.joblib`
-   - `manipur_predictor.py`
-
-### Issue 4: Dark theme not displaying
-
-**Solution:**
-The dashboard uses dark theme by default. If colors look off:
-1. Go to Streamlit Settings (☰ menu)
-2. Settings → Theme → Choose "Dark"
-
-## 📊 Supported Districts
-
-### All 16 Manipur Districts:
-- **Valley Districts (6):** Imphal West, Imphal East, Bishnupur, Thoubal, Kakching, Jiribam
-- **Hill Districts (10):** Senapati, Kangpokpi, Tamenglong, Noney, Ukhrul, Kamjong, Churachandpur, Pherzawl, Chandel, Tengnoupal
-
-## 🎯 Model Details
-
-### Flood Prediction Model
-- **Type:** Gradient Boosting Classifier
-- **Features:** 17 input features
-- **Output:** Flood probability (0-100%)
-- **Prediction Window:** 3 days advance
-- **Accuracy:** Optimized for Manipur's geographical and climatic conditions
-
-### Landslide Prediction Model
-- **Type:** [Add your model details]
-- **Features:** [Add your feature list]
-- **Output:** Risk level and probability
-
-## 📝 Notes
-
-1. **Auto-detection:** The flood model auto-detects season based on current date if not specified
-2. **Default Values:** If advanced parameters are not provided, the model uses reasonable defaults based on season
-3. **Grid Resolution:** Landslide analysis uses optimized grid sizes (4-6 points) per district for balanced speed and accuracy
-
-## 🤝 Contributing
-
-To improve the dashboard:
-1. Add more districts to the `DISTRICTS` dictionary
-2. Enhance visualization (add heatmaps, contour plots)
-3. Integrate real-time weather APIs
-4. Add historical data comparison
-
-## 📄 License
-
-[Add your license information]
-
-## 👥 Authors
-
-[Add your team/author information]
+Open `http://localhost:8501` in your browser.
 
 ---
 
-## 🆘 Support
+## 📖 How to Use
 
-For issues or questions:
-1. Check the troubleshooting section above
-2. Review the model documentation in `model_export/README.md`
-3. Contact the development team
+**Flood Assessment:**
+1. Select a district from the dropdown
+2. Optionally expand "Advanced Parameters" to input live readings:
+   - 3-day cumulative rainfall (mm)
+   - River water level (m), Soil moisture (%), Drainage capacity
+   - Dam release status, Temperature, Humidity, Wind speed
+3. Click **Generate Flood Risk Assessment**
+4. View probability score, risk level, warnings, and download the report
 
-**Last Updated:** January 30, 2026
+**Landslide Assessment:**
+1. Select a district
+2. Click **Generate Landslide Risk Map**
+3. View color-coded zone map and download CSV
+
+> **Note:** All parameters have intelligent seasonal defaults — the model auto-detects the current month and fills in appropriate baseline values if you don't have live data.
+
+---
+
+## 🐛 Troubleshooting
+
+**`AttributeError: __pyx_unpickle_CyHalfBinomialLoss`**
+```bash
+pip install scikit-learn==1.3.0
+```
+The model was serialized with scikit-learn 1.x — version must match.
+
+**`ModuleNotFoundError: landslide_core`**
+Ensure `landslide_core.py` is in the same directory as `streamlit_app.py`. The function signature expected:
+```python
+# Returns: (result_dict, env_dict)
+result, env = predict_with_free_apis(lat, lon)
+# result keys: risk_level, landslide_probability
+# env keys: elevation, slope, rainfall
+```
+
+**`FileNotFoundError: manipur_flood_model.joblib`**
+Ensure the `model_export/` folder is present with all four files intact.
+
+---
+
+## 🔮 Roadmap
+
+- [ ] Real-time CWC river level API integration
+- [ ] IMD live rainfall feed
+- [ ] Historical risk comparison (year-over-year)
+- [ ] SMS/email alert system for Critical zones
+- [ ] Expand coverage to other North-East states
+
+---
+
+## 👥 Team
+
+Built at the **IIM Shillong North-East Hackathon** by students of **IIIT Manipur**.
+
+| Name | Role |
+|---|---|
+| Pratyush Pandey | Data pipeline, Admin Dashboard, Visualisation |
+| Kumar Gaurav |  |
+| Rishabh Pandey | ML Engineer |
+
+---
+
+## 📄 License
+
+MIT License — free to use, modify, and distribute with attribution.
+
+---
+
+*Last updated: June 2026*
